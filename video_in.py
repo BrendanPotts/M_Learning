@@ -6,24 +6,23 @@ cap = cv2.VideoCapture(0)
 
 
 if __name__=='__main__':
-    run = True
-    while run:
+    while True:
         _, frame = cap.read()
         hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
 
-        lower_red = np.array([30, 150, 50])
-        upper_red = np.array([255, 255, 180])
+        lower_color = np.array([80, 25, 20])
+        upper_color = np.array([255, 200, 160])
 
-        mask = cv2.inRange(hsv, lower_red, upper_red)
+        mask = cv2.inRange(hsv, lower_color, upper_color)
         res = cv2.bitwise_and(frame, frame, mask=mask)
 
         cv2.imshow('frame', frame)
         cv2.imshow('mask', mask)
         cv2.imshow('res', res)
 
-        k = cv2.waitKey(5) & 0xFF
+        k = cv2.waitKey(0) & 0xFF
         if k == 27:
             break
-        run = False
+
     cv2.destroyAllWindows()
     cap.release()

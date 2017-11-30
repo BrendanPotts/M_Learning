@@ -6,7 +6,8 @@ cap = cv2.VideoCapture(0)
 
 
 if __name__=='__main__':
-    while (1):
+    run = True
+    while run:
         _, frame = cap.read()
         hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
 
@@ -23,6 +24,6 @@ if __name__=='__main__':
         k = cv2.waitKey(5) & 0xFF
         if k == 27:
             break
-
+        run = False
     cv2.destroyAllWindows()
     cap.release()
